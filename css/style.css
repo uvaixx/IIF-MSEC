@@ -45,114 +45,126 @@
 /* ================= FULL UPDATED MOBILE SESSION ================= */
 @media (max-width: 768px) {
   
+  /* SAFETY RESET: Prevents the "Zoom Out" issue by forcing content to screen width */
+  html, body {
+    overflow-x: hidden;
+    width: 100vw;
+  }
+
+  /* Force all "inner" containers to fit the screen instead of 1200px */
+  .inner {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 15px !important;
+    margin: 0 !important;
+  }
+
   /* --- 1. Horizontal Navigation Fix --- */
   nav .inner {
-    display: flex;
-    flex-direction: row;      /* Forces horizontal alignment */
-    flex-wrap: nowrap;        /* Prevents items from dropping to next line */
-    overflow-x: auto;         /* Allows swiping left/right if many links */
-    -webkit-overflow-scrolling: touch; /* Smooth swiping on iOS */
-    justify-content: flex-start;
-    padding: 0 10px;
-    gap: 5px;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start !important;
+    gap: 0;
   }
 
   nav a {
-    display: inline-block !important; 
-    width: auto !important;          /* Overrides the 100% width causing vertical stretch */
-    white-space: nowrap;            /* Keeps text on a single line */
+    display: inline-block !important;
+    width: auto !important;
+    white-space: nowrap !important;
     padding: 12px 15px !important;
     font-size: 13px;
-    border-bottom: 2px solid transparent;
   }
 
-  /* Hide scrollbar for a cleaner "app-like" look */
-  nav .inner::-webkit-scrollbar {
-    display: none;
+  /* Hide scrollbar and toggle */
+  nav .inner::-webkit-scrollbar { display: none; }
+  .menu-toggle { display: none !important; }
+
+  /* --- 2. Header & Logo Scaling --- */
+  #main-header {
+    padding: 10px 0 !important;
   }
 
-  .menu-toggle {
-    display: none !important; /* Hide hamburger as links are now always visible */
-  }
-
-  /* --- 2. Header & Logo Adjustments --- */
   #main-header .inner {
-    flex-direction: column;   /* Stack logo and badges if needed, or keep row */
-    padding: 10px;
-    gap: 10px;
-  }
-
-  .logo-text h1 {
-    font-size: 24px !important; /* Smaller logo text for mobile */
-  }
-
-  .header-right {
-    align-items: center;
-    margin: 0 auto;
-  }
-
-  /* --- 3. Hero Section Responsiveness --- */
-  .hero-inner {
-    grid-template-columns: 1fr; /* Stack stats below text */
-    padding: 30px 20px;
+    flex-direction: column;
     text-align: center;
   }
 
-  .hero h2 {
-    font-size: 28px !important;
+  .logo-text h1 {
+    font-size: 22px !important;
   }
 
-  .hero-desc {
-    font-size: 14px;
-    margin: 0 auto 20px;
+  .header-right {
+    margin: 5px auto 0;
+    align-items: center;
   }
 
-  .hero-cta-row {
-    justify-content: center;
+  /* --- 3. Hero & Slider --- */
+  .hero-inner {
+    grid-template-columns: 1fr !important;
+    padding: 20px 15px !important;
+    text-align: center;
   }
 
-  /* --- 4. Grid Stacking (About, Focus, Programs) --- */
+  .hero h2 { font-size: 26px !important; }
+
+  .hero-cta-row { justify-content: center; }
+
+  .slider { height: 200px !important; }
+
+  /* --- 4. Grid Stacking (Fixes the wide layout) --- */
   .about-grid, 
   .focus-grid, 
   .programs-grid, 
   .highlights-grid, 
   .facilities-grid,
   .contact-grid,
-  .footer-top {
-    grid-template-columns: 1fr !important; /* Force all multi-column grids to stack */
-    gap: 20px;
+  .footer-top,
+  .news-grid,
+  .iic-grid,
+  .startups-grid {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    gap: 20px !important;
   }
 
-  /* --- 5. Element Specific Fixes --- */
-  .slider {
-    height: 250px; /* Shorter slider for mobile screens */
+  /* --- 5. Social Bar & WhatsApp Adjustments --- */
+  #social-wrapper {
+    top: 70%; /* Keep it accessible */
   }
 
-  .team-card {
-    width: 100%; /* Full width team cards */
+  #social-wrapper.visible {
+    right: -65px; /* Adjust peek distance for small screens */
   }
 
-  .process-steps {
-    grid-template-columns: 1fr; /* Stack process steps vertically */
+  #social-wrapper.open {
+    right: 10px;
   }
 
-  .process-steps::before {
-    display: none; /* Hide the horizontal connector line */
+  #fixed-social-container {
+    padding: 10px 5px;
   }
 
+  .whatsapp {
+    left: 15px;
+    bottom: 15px;
+    width: 45px;
+    height: 45px;
+  }
+
+  /* --- 6. Utilities --- */
   .utility-bar .inner {
     flex-direction: column;
     height: auto;
-    padding: 8px;
+    gap: 5px;
   }
 
-  /* WhatsApp position adjustment so it doesn't block content */
-  .whatsapp {
-    width: 45px;
-    height: 45px;
-    bottom: 20px;
-    left: 20px;
+  .process-steps {
+    grid-template-columns: 1fr;
   }
+  .process-steps::before { display: none; }
 }
 
   /* ── TOP MARQUEE BAR ── */
